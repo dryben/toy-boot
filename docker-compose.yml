@@ -1,0 +1,22 @@
+version: "2"
+services:
+  app:
+    container_name: c-app
+    restart: always
+    build: .
+    volumes:
+      - ./client:/data/app/client
+      - ./common:/data/app/common
+      - ./server:/data/app/server
+    ports:
+      - "29292:3000"
+    command: nodemon
+    links:
+      - mongo
+  mongo:
+    container_name: c-mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "29293:27017"
