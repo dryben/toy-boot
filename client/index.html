@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="css/app.css">
+        <style>
+		[v-cloak] {
+			display: none;
+		}
+		</style>
+	</head>
+	<body>
+
+	<div id="meetupApp" v-cloak>
+
+		<h1>Meetups</h1>
+		
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Where</th>
+					<td>&nbsp;</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="meetup in meetups">
+					<td @click="editMeetup(meetup)" class="meetupItem" title="Click to Edit">{{meetup.name}}</td>
+					<td>{{meetup.where}}</td>
+					<td @click="deleteMeetup(meetup)" class="deleteMeetup" title="Click to Delete">Delete</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<form @submit.prevent="storeMeetup">
+			<p>
+			<label for="name">Name</label>
+			<input type="text" id="name" v-model="meetup.name">
+			</p>
+			<p>
+			<label for="where">Where</label>
+			<input type="string" id="where" v-model="meetup.where">
+			</p>
+			<input type="reset" value="Clear" @click="reset">
+			<input type="submit" value="Save Meetup">
+		</form>
+
+	</div>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script src="js/app.js"></script>
+	</body>
+</html>
